@@ -12,16 +12,18 @@ npm install --save @react-augment/react-router
 
 ## Usage
 
+### Basic routing
 ```jsx
-import React, { Component } from 'react'
+import AugmentRouter from '@react-augment/react-router'
 
-import MyComponent from '@react-augment/react-router'
-import '@react-augment/react-router/dist/index.css'
+const Home = () => (<div>Home</div>);
+const About = () => (<div>About</div>);
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+const App = () => {
+  return <AugmentRouter routes={[
+    { path: '/', component: Home },
+    { path: '/about', component: About }
+  ]}/>
 }
 ```
 
