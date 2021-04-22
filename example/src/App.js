@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { ExampleComponent } from '@react-augment/react-router'
-import '@react-augment/react-router/dist/index.css'
+import AugmentRouter from '@react-augment/react-router'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <AugmentRouter text="Create React Library Example 😄" />
 }
 
 export default App
