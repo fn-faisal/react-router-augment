@@ -8,10 +8,9 @@ function AugmentRouter({ routes, preLoadRoutesComponent }) {
   const findInRoutes = ( component ) => {
     // return routes.
   }
-
   const switchComp = (
     <Switch>
-        { routes.map( ( r, i ) => <Route findInRoutes={findInRoutes} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
+        { routes.map( ( r, i ) => <Route exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
     </Switch>
   );
 
@@ -40,3 +39,5 @@ AugmentRouter.propTypes = {
 export default AugmentRouter;
 
 export { default as asyncComponent } from './components/asyncComponent';
+export { default as execute } from './components/execute';
+export { default as redirect } from './components/redirect';

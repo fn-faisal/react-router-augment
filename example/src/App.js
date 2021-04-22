@@ -1,30 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom';
-import AugmentRouter, { asyncComponent } from '@react-augment/react-router';
+import AugmentRouter, { asyncComponent, execute, redirect } from '@react-augment/react-router';
 
 const Home = () => (<div>Home</div>);
 const About = () => (<div>About</div>);
 
 
-const session = false;
-
-const timeOut = (t) => {
-  return new Promise((resolve, reject) => {
+const startSession = ( setSession, password ) => {
+  // return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log('from promise');
-      resolve(`Completed in ${t}`)
-    }, t)
-  });
+      if ( password === '123456' ) {
+        console.log('123')
+        setSession(123)
+        return { user: 'asd' };
+      } else {
+        throw Error('401 unauthorized');
+      }
+    }, 3000)
 }
 
 const App = () => {
+  const [ session, setSession ] = useState(321);
+  const [ inSession, hasSession ] = useState(false);
   return <AugmentRouter routes={[
-    { path: '/', component: Home, middleware:
+    { path: '/', component: () => (<div>Session: {session}</div>), middleware:
     [
-      timeOut(1000),
-      asyncComponent(() => <div>Asd</div>),
+      execute(async () => {
+        return redirect('/about');
+      }),
+      execute(async (val) => {
+        throw {error: 'random error'};
+      }, false),
+      execute((value, exception) => {
+        if ( exception ) {
+          // alert(exception.error);
+          throw Error;
+        }
+      }, false),
+      asyncComponent(() => <div>Asd: {session}</div>),
+      execute(() => {
+        console.log('after');
+      }),
     ]},
-    { path: '/about', component: About },
+    { path: '/about', component: () => (<div>About</div>) },
+
   ]}
 
   />
