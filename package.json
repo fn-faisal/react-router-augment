@@ -1,6 +1,6 @@
 {
   "name": "@react-augment/react-router",
-  "version": "1.0.0",
+  "version": "0.0.31",
   "description": "Sugarcoating for react router",
   "author": "https://github.com/fn-faisal/react-router-augment",
   "license": "MIT",
