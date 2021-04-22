@@ -2,7 +2,7 @@
   "name": "@react-augment/react-router",
   "version": "0.0.31",
   "description": "Sugarcoating for react router",
-  "author": "https://github.com/fn-faisal/react-router-augment",
+  "author": "fn-faisal",
   "license": "MIT",
   "repository": "https://github.com/fn-faisal/react-router-augment",
   "main": "dist/index.js",
