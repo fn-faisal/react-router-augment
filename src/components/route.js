@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route as BrowserRoute, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Route({ path, component, exact, middleware, setSession }) {
+function Route({ path, component, exact, middleware, ...props }) {
   const [defaultComponent, setDefaultComponent] = useState(<BrowserRoute exact={exact} path={path} component={component} />);
   const [exceptionComponent, setExceptionComponent] = useState(null);
 
@@ -41,7 +41,7 @@ function Route({ path, component, exact, middleware, setSession }) {
 
   useEffect(() => {
     handleMiddleware();
-  }, []);
+  }, [component]);
 
   return defaultComponent;
 }

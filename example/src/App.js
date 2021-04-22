@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom';
 import AugmentRouter, { asyncComponent, execute, redirect } from '@react-augment/react-router';
 
@@ -8,11 +8,10 @@ const About = () => (<div>About</div>);
 
 const startSession = ( setSession, password ) => {
   // return new Promise((resolve, reject) => {
-    setTimeout(() => {
+    return setTimeout(() => {
       if ( password === '123456' ) {
         console.log('123')
-        setSession(123)
-        return { user: 'asd' };
+        setSession(true)
       } else {
         throw Error('401 unauthorized');
       }
@@ -22,13 +21,23 @@ const startSession = ( setSession, password ) => {
 const App = () => {
   const [ session, setSession ] = useState(321);
   const [ inSession, hasSession ] = useState(false);
+
+  useEffect(() => {
+    const timeout = startSession(hasSession, '123456');
+    return () => clearTimeout(timeout);
+  },[]);
+
   return <AugmentRouter routes={[
     { path: '/', component: () => (<div>Session: {session}</div>), middleware:
     [
-      execute(async () => {
-        return redirect('/about');
+      execute(() => {
+        console.log(inSession);
+        if ( inSession === true ) {
+          return redirect('/about')
+        }
       }),
       execute(async (val) => {
+        console.log(session);
         throw {error: 'random error'};
       }, false),
       execute((value, exception) => {
