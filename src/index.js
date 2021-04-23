@@ -1,23 +1,38 @@
-import React from 'react';
-import { BrowserRouter, Switch } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from 'react';
+import { BrowserRouter, Redirect, Switch, Route as BrowserRoute, useHistory } from "react-router-dom";
 import Route from './components/route';
 import PropTypes from 'prop-types';
 
-function AugmentRouter({ routes, preLoadRoutesComponent }) {
+function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp }) {
 
-  const findInRoutes = ( component ) => {
-    // return routes.
-  }
-  const switchComp = (
+  const [ redirectComponent, setRedirectComponent ] = useState(undefined);
+
+  useEffect(() => {
+    console.log('render router');
+  },[routes]);
+
+  useEffect(() => {
+    if ( redirectComponent ) {
+      setRedirectComponent(undefined);
+    }
+  },[redirectComponent]);
+
+  const switchComp =
+    redirectComponent ?
     <Switch>
-        { routes.map( ( r, i ) => <Route exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
+      {redirectComponent}
+      { routes.map( ( r, i ) => <Route key={r.path} setRedirectComponent={setRedirectComponent} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
+    </Switch>:
+  (
+    <Switch>
+      { routes.map( ( r, i ) => <Route key={r.path} setRedirectComponent={setRedirectComponent} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
     </Switch>
   );
 
   if ( typeof preLoadRoutesComponent === 'object' ) {
     const PreLoadRoutesComponent = preLoadRoutesComponent;
     return (
-      <BrowserRouter>
+      <BrowserRouter {...browserRouterProp} >
         <PreLoadRoutesComponent>
           {switchComp}
         </PreLoadRoutesComponent>
@@ -33,11 +48,13 @@ function AugmentRouter({ routes, preLoadRoutesComponent }) {
 }
 
 AugmentRouter.propTypes = {
-  routes: PropTypes.arrayOf(Route.propTypes)
+  routes: PropTypes.arrayOf(Route.propTypes),
+  preLoadRoutesComponent: PropTypes.elementType,
+  browserRouterProp: PropTypes.object
 };
 
 export default AugmentRouter;
 
-export { default as asyncComponent } from './components/asyncComponent';
-export { default as execute } from './components/execute';
-export { default as redirect } from './components/redirect';
+export { default as asyncComponent } from './actions/asyncComponent';
+export { default as execute } from './actions/execute';
+export { default as redirect } from './actions/redirect';

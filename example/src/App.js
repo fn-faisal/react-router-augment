@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Redirect } from 'react-router-dom';
 import AugmentRouter, { asyncComponent, execute, redirect } from '@react-augment/react-router';
+import { browserHistory } from 'react-router';
 
 const Home = () => (<div>Home</div>);
-const About = () => (<div>About</div>);
+const Login = () => (<div>Login</div>);
 
 
 const startSession = ( setSession, password ) => {
@@ -28,31 +28,28 @@ const App = () => {
   },[]);
 
   return <AugmentRouter routes={[
-    { path: '/', component: () => (<div>Session: {session}</div>), middleware:
-    [
-      execute(() => {
-        console.log(inSession);
-        if ( inSession === true ) {
-          return redirect('/about')
-        }
-      }),
-      execute(async (val) => {
-        console.log(session);
-        throw {error: 'random error'};
-      }, false),
-      execute((value, exception) => {
-        if ( exception ) {
-          // alert(exception.error);
-          throw Error;
-        }
-      }, false),
-      asyncComponent(() => <div>Asd: {session}</div>),
-      execute(() => {
-        console.log('after');
-      }),
-    ]},
-    { path: '/about', component: () => (<div>About</div>) },
-
+    { path: '/about', component: ({ history }) => (<div>About <span onClick={() => history.push('/')}>asd</span></div>) },
+    { path: '/', component: () => (<div>Session: {session}</div>),
+      middleware:
+      [
+        execute(() => {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000)
+          })
+        }),
+        asyncComponent(() => <div>Asd: {session}</div>),
+        execute(async () => {
+          await new Promise((resolve, reject) => {
+            setTimeout(() => {
+              resolve();
+            }, 3000)
+          })
+          return redirect('/about');
+        }),
+      ]
+    },
   ]}
 
   />
