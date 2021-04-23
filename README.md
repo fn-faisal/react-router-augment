@@ -103,6 +103,13 @@ Whenever a middleware execute function encounters an exception, to handle it, an
 ```
 Such a functionality can be used to display an error message or log something incase of an exception and optionally continue the execution chain.
 
+### Linking components.
+By default, the components passed to react router have browser history object passed in their props. The history object can be used to perform navigation.
+
+```jsx
+component: ({ history }) => (<.../>)
+```
+
 ## License
 
 MIT © [https://github.com/fn-faisal/react-router-augment](https://github.com/https://github.com/fn-faisal/react-router-augment)
