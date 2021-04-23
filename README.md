@@ -110,6 +110,16 @@ By default, the components passed to react router have browser history object pa
 component: ({ history }) => (<.../>)
 ```
 
+### Browser Router Ref.
+You can get a hold of a reference to browser router by passing a **ref** object to **AugmentRouter** ref prop.
+
+```jsx
+<AugmentRouter ref={ref} ... />
+```
+
+### Browser Router props.
+Browser router props can be supplied to the augment router using **browserRouterProp** prop.
+
 ## License
 
 MIT © [https://github.com/fn-faisal/react-router-augment](https://github.com/https://github.com/fn-faisal/react-router-augment)

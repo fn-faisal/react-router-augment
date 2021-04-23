@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Redirect, Switch, Route as BrowserRoute, useHistory } from "react-router-dom";
 import Route from './components/route';
 import PropTypes from 'prop-types';
 
-function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp }) {
+function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp, browserRouterRef }) {
 
   const [ redirectComponent, setRedirectComponent ] = useState(undefined);
 
@@ -32,7 +32,7 @@ function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp }) {
   if ( typeof preLoadRoutesComponent === 'object' ) {
     const PreLoadRoutesComponent = preLoadRoutesComponent;
     return (
-      <BrowserRouter {...browserRouterProp} >
+      <BrowserRouter {...browserRouterProp} ref={browserRouterRef}>
         <PreLoadRoutesComponent>
           {switchComp}
         </PreLoadRoutesComponent>
@@ -41,7 +41,7 @@ function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp }) {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter {...browserRouterProp} ref={browserRouterRef}>
       {switchComp}
     </BrowserRouter>
   );
@@ -53,7 +53,13 @@ AugmentRouter.propTypes = {
   browserRouterProp: PropTypes.object
 };
 
-export default AugmentRouter;
+const WrappedComponent = React.forwardRef(
+  function (props, browserRouterRef) {
+    return <AugmentRouter {...props} browserRouterRef={browserRouterRef} />;
+  }
+);
+
+export default WrappedComponent;
 
 export { default as asyncComponent } from './actions/asyncComponent';
 export { default as execute } from './actions/execute';

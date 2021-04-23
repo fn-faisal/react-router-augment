@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AugmentRouter, { asyncComponent, execute, redirect } from '@react-augment/react-router';
 import { browserHistory } from 'react-router';
 
@@ -22,12 +22,17 @@ const App = () => {
   const [ session, setSession ] = useState(321);
   const [ inSession, hasSession ] = useState(false);
 
-  useEffect(() => {
-    const timeout = startSession(hasSession, '123456');
-    return () => clearTimeout(timeout);
-  },[]);
+  const ref = useRef(null);
 
-  return <AugmentRouter routes={[
+  useEffect(() => {
+    // const timeout = startSession(hasSession, '123456');
+    // return () => clearTimeout(timeout);
+    console.log(ref);
+  },[ref]);
+
+  return <AugmentRouter ref={ref}
+  browserRouterProp={{ forceRefresh: true }}
+  routes={[
     { path: '/about', component: ({ history }) => (<div>About <span onClick={() => history.push('/')}>asd</span></div>) },
     { path: '/', component: () => (<div>Session: {session}</div>),
       middleware:
