@@ -120,6 +120,17 @@ You can get a hold of a reference to browser router by passing a **ref** object 
 ### Browser Router props.
 Browser router props can be supplied to the augment router using **browserRouterProp** prop.
 
+### Typescript
+Typescript support added.
+
+#### Types
+import types via ```jsx import {...} from '@react-augment/react-router/dist/types'```
+
+* AugmentRouterType
+* AugmentComponentType
+* AugmentRouteType
+
+
 ## License
 
 MIT © [https://github.com/fn-faisal/react-router-augment](https://github.com/fn-faisal/react-router-augment)
