@@ -9,10 +9,6 @@ function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp, brow
   const [ redirectComponent, setRedirectComponent ] = useState<FC<any> | undefined>(undefined);
 
   useEffect(() => {
-    console.log('render router');
-  },[routes]);
-
-  useEffect(() => {
     if ( redirectComponent ) {
       setRedirectComponent(undefined);
     }
@@ -65,3 +61,4 @@ export default WrappedComponent;
 export { default as asyncComponent } from './actions/asyncComponent';
 export { default as execute } from './actions/execute';
 export { default as redirect } from './actions/redirect';
+export * from './hof/augment-router.hof';

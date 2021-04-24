@@ -1,9 +1,9 @@
 import { FC, MutableRefObject } from "react"
-import { Route } from "react-router"
+import { AugmentRouteType } from "./route.type"
 
 export type AugmentRouterType = {
-  routes: Array<Route>,
+  routes: Array<AugmentRouteType>,
   preLoadRoutesComponent: FC<any>,
-  browserRouterProp: any,
+  browserRouterProp?: any,
   browserRouterRef?: MutableRefObject<any>,
 }
