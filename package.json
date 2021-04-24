@@ -11,7 +11,15 @@
   "engines": {
     "node": ">=10"
   },
-  "keywords": [ "react", "router", "augment", "middleware", "react-middleware", "reactjs", "typescript" ],
+  "keywords": [
+    "react",
+    "router",
+    "augment",
+    "middleware",
+    "react-middleware",
+    "reactjs",
+    "typescript"
+  ],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
@@ -29,6 +37,14 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^12.12.38",
+    "@types/prop-types": "~15.7.3",
+    "@types/react": "^16.9.27",
+    "@types/react-dom": "^16.9.7",
+    "@types/react-router-dom": "~5.1.7",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -48,16 +64,7 @@
     "react": "^17.0.2",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "@types/jest": "^25.1.4",
-    "@types/node": "^12.12.38",
-    "@types/react": "^16.9.27",
-    "@types/react-dom": "^16.9.7",
-    "@typescript-eslint/eslint-plugin": "^2.26.0",
-    "@typescript-eslint/parser": "^2.26.0",
-    "typescript": "^3.7.5",
-    "@types/react-router-dom": "~5.1.7",
-    "@types/prop-types": "~15.7.3"
-
+    "typescript": "^3.7.5"
   },
   "files": [
     "dist"

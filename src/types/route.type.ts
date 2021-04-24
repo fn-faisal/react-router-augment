@@ -10,3 +10,5 @@ export type AugmentRouteType = {
   exact?: boolean,
   middleware?: Array<Function>
 };
+
+export type AugmentComponentRouteType = Pick<AugmentRouteType, 'path' | 'exact' | 'middleware'>

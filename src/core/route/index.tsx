@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import { AugmentRouteType } from '../../types/route.type';
 import useMiddleware from './middleware.hook';
 
-function Route({ path, component, exact, middleware, setRedirectComponent }: AugmentRouteType & { setRedirectComponent: Dispatch<any> }) {
+function Route({ path, component, exact, middleware, setRedirectComponent }: AugmentRouteType & { setRedirectComponent?: Dispatch<any> }) {
   const Component: FC<any> = component;
   const history = useHistory();
 
