@@ -1,6 +1,6 @@
 {
   "name": "@react-augment/react-router",
-  "version": "0.2.01",
+  "version": "0.2.2",
   "description": "Sugarcoating for react router",
   "author": "fn-faisal",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "engines": {
     "node": ">=10"
   },
-  "keywords": [ "react", "router", "augment", "middleware", "react-middleware", "reactjs" ],
+  "keywords": [ "react", "router", "augment", "middleware", "react-middleware", "reactjs", "typescript" ],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
