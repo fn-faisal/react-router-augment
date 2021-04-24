@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-function exceptionComponent( component ) {
+function exceptionComponent( component: FC<any> ) {
   return {
     augId: 'exceptionComponent',
     component

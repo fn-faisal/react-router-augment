@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { BrowserRouter, Redirect, Switch, Route as BrowserRoute, useHistory } from "react-router-dom";
+import React, { FC, MutableRefObject, useEffect, useState } from 'react';
+import { BrowserRouter,  Switch } from "react-router-dom";
 import Route from './components/route';
 import PropTypes from 'prop-types';
+import { AugmentRouterType } from './types/router.type';
 
-function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp, browserRouterRef }) {
+function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp, browserRouterRef }: AugmentRouterType) {
 
-  const [ redirectComponent, setRedirectComponent ] = useState(undefined);
+  const [ redirectComponent, setRedirectComponent ] = useState<FC<any> | undefined>(undefined);
 
   useEffect(() => {
     console.log('render router');
@@ -21,16 +22,16 @@ function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp, brow
     redirectComponent ?
     <Switch>
       {redirectComponent}
-      { routes.map( ( r, i ) => <Route key={r.path} setRedirectComponent={setRedirectComponent} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
+      { routes.map( ( r: any, i: any ) => <Route key={r.path} setRedirectComponent={setRedirectComponent} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
     </Switch>:
   (
     <Switch>
-      { routes.map( ( r, i ) => <Route key={r.path} setRedirectComponent={setRedirectComponent} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
+      { routes.map( ( r: any, i: any ) => <Route key={r.path} setRedirectComponent={setRedirectComponent} exact={ i === 0 } path={r.path} component={r.component} middleware={r.middleware} /> ) }
     </Switch>
   );
 
   if ( typeof preLoadRoutesComponent === 'object' ) {
-    const PreLoadRoutesComponent = preLoadRoutesComponent;
+    const PreLoadRoutesComponent: FC<any> = preLoadRoutesComponent;
     return (
       <BrowserRouter {...browserRouterProp} ref={browserRouterRef}>
         <PreLoadRoutesComponent>
@@ -48,13 +49,13 @@ function AugmentRouter({ routes, preLoadRoutesComponent, browserRouterProp, brow
 }
 
 AugmentRouter.propTypes = {
-  routes: PropTypes.arrayOf(Route.propTypes),
+  routes: PropTypes.arrayOf(PropTypes.any),
   preLoadRoutesComponent: PropTypes.elementType,
   browserRouterProp: PropTypes.object
 };
 
 const WrappedComponent = React.forwardRef(
-  function (props, browserRouterRef) {
+  function (props: any, browserRouterRef: MutableRefObject<any>) {
     return <AugmentRouter {...props} browserRouterRef={browserRouterRef} />;
   }
 );

@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-function asyncComponent( component ) {
+function asyncComponent( component: FC<any> ) {
   return {
     augId: 'asyncComponent',
     component

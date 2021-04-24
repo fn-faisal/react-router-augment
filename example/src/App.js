@@ -31,7 +31,6 @@ const App = () => {
   },[ref]);
 
   return <AugmentRouter ref={ref}
-  browserRouterProp={{ forceRefresh: true }}
   routes={[
     { path: '/about', component: ({ history }) => (<div>About <span onClick={() => history.push('/')}>asd</span></div>) },
     { path: '/', component: () => (<div>Session: {session}</div>),
