@@ -122,4 +122,4 @@ Browser router props can be supplied to the augment router using **browserRouter
 
 ## License
 
-MIT © [https://github.com/fn-faisal/react-router-augment](https://github.com/https://github.com/fn-faisal/react-router-augment)
+MIT © [https://github.com/fn-faisal/react-router-augment](https://github.com/fn-faisal/react-router-augment)
