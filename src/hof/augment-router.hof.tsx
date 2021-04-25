@@ -15,8 +15,8 @@ export function augmentRouter( routerProps: Pick<AugmentRouterType, 'routes' | '
       throw new RouteMappingError('No route mapping was provided');
     routes = registeredRoutes;
   }
-  return function ({ children }: any) {
-    return () => <AugmentRouterComponent {...routerProps} routes={routes} preLoadRoutesComponent={children} />
+  return function (component?: any) {
+    return () => <AugmentRouterComponent {...routerProps} routes={routes} preLoadRoutesComponent={component?.children} />
   };
 }
 

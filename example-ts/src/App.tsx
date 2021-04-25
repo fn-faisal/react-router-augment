@@ -36,14 +36,14 @@
 //   />
 // }
 
-import React from 'react';
+// import React from 'react';
 import './components';
 import { augmentRouter } from '@react-augment/react-router';
 // import { AugmentComponentType } from '@react-augment/react-router/dist/types';
 
-const WrapperComponent = () => (<></>);
+// const WrapperComponent = () => (<></>);
 
-const App = augmentRouter({})(WrapperComponent);
+const App = augmentRouter({})(undefined);
 
 
 export default App;
