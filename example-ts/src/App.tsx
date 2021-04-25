@@ -43,7 +43,7 @@ import { augmentRouter } from '@react-augment/react-router';
 
 // const WrapperComponent = () => (<></>);
 
-const App = augmentRouter({})(undefined);
+const App = augmentRouter({})();
 
 
 export default App;

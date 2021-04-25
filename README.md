@@ -130,8 +130,91 @@ import types via ```jsx import {...} from '@react-augment/react-router/dist/type
 * AugmentComponentType
 * AugmentRouteType
 
-###
-#### Clean code and decorator alternative
+### Higher Order Functions (HOF)
+> `###### Clean code and decorator alternative`
+
+You can use higher order functions as a clean alternative to decorators and use them across both javascript and typescript with ease.
+
+##### *hof* -`augmentRouter`
+This acts as a wrapper around your main router component and will wrap your main app component with the augment router. The router *hof* accepts the same props that the Augment component does except the preload component prop. So whichever component you supply
+
+eg.
+```jsx
+import React from 'react';
+import { augmentRouter } from '@react-augment/react-router';
+// import { AugmentComponentType } from '@react-augment/react-router/dist/types';
+
+const WrapperComponent = () => (<></>);
+// routes are now optional but either require atleast one hof route or an empty array in the router hof.
+const App = augmentRouter({
+    routes: [...],
+    // other props
+    ....
+})(WrapperComponent);
+
+// if you dont want to wrap augment's main navigator, you can simply call the augment router hof without a wrapper
+//const App = augmentRouter({
+//    routes: [...],
+//    // other props
+//    ....
+//})();
+```
+
+##### *hof* -`augmentComponent`
+Wanna use something similar to anular decorators but don't want to go through the headache of setting up decorators and avoid pitfalls of using experimental decorators.
+You can wrap your components up in `augmentComponent` *hof* and export all your wrapped component in an index file in your component root directory and simply import this directory where you're setting up the router.
+
+eg.
+*components/home.tsx*
+```tsx
+import { augmentComponent } from '@react-augment/react-router';
+import { AugmentComponentType } from '../../../dist/types';
+
+const HomeComponent = ({ history }:AugmentComponentType) => {
+  return (
+    <div>Home <i onClick={() => history.push('/about')}>To about</i></div>
+  );
+}
+
+export default augmentComponent({
+  exact: true,
+  path: '/',
+  middleware: []
+})(HomeComponent);
+```
+
+*components/about.tsx*
+```tsx
+import { execute } from '@react-augment/react-router';
+import { augmentComponent } from '@react-augment/react-router';
+
+const AboutComponent = ({ history }: any) => {
+  return (
+    <div>About <span onClick={() => history.push('/')}>To home</span></div>
+  );
+}
+
+export default augmentComponent({
+  path: '/about',
+  middleware: [ execute(() => console.log('middleware about page')) ]
+})(AboutComponent);
+```
+*main router file eg. App.tsx*
+```tsx
+import { augmentRouter } from '@react-augment/react-router';
+// import { AugmentComponentType } from '@react-augment/react-router/dist/types';
+
+// you can use wrapper components to update app states etc from the main nav.
+// const WrapperComponent = () => (<></>);
+
+const App = augmentRouter({})();
+```
+
+And Voilà...
+That's it. You're good to go.
+
+##### Adding soon
+True MVC suppport by introducing controller logic.
 
 ## License
 
