@@ -8,7 +8,7 @@ export type AugmentRouteType = {
   path: string,
   component: FC<AugmentComponentType>,
   exact?: boolean,
-  middleware?: Array<Function>
+  middleware?: Array<any>
 };
 
 export type AugmentComponentRouteType = Pick<AugmentRouteType, 'path' | 'exact' | 'middleware'>

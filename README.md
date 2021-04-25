@@ -130,6 +130,8 @@ import types via ```jsx import {...} from '@react-augment/react-router/dist/type
 * AugmentComponentType
 * AugmentRouteType
 
+###
+#### Clean code and decorator alternative
 
 ## License
 

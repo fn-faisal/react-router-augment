@@ -2,7 +2,7 @@ import React, { Dispatch, FC, useEffect } from "react";
 import { Route, Redirect } from 'react-router-dom';
 
 
-export default function useMiddleware( Component: FC<any>, middleware: Array<Function> | undefined, exact: boolean, path: string
+export default function useMiddleware( Component: FC<any>, middleware: Array<() => any> | undefined, exact: boolean, path: string
     , setDefaultComponent: Dispatch<any>, setRedirectComponent: Dispatch<any> | undefined, exceptionComponent: FC<any> | undefined
     , setExceptionComponent: Dispatch<any> | undefined ) {
   const handleMiddleware: any =  async () => {
