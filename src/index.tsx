@@ -1,8 +1,21 @@
 import AugmentRouter from './core';
 
-export default AugmentRouter;
+import { default as asyncComponent } from './actions/asyncComponent';
+import { default as execute } from './actions/execute';
+import { default as redirect } from './actions/redirect';
+import { default as exceptionComponent } from './actions/exceptionComponent';
 
-export { default as asyncComponent } from './actions/asyncComponent';
-export { default as execute } from './actions/execute';
-export { default as redirect } from './actions/redirect';
-export * from './hof';
+import {
+  augmentComponent,
+  augmentRouter
+} from './hof';
+
+module.exports = {
+  default: AugmentRouter,
+  asyncComponent,
+  execute,
+  redirect,
+  exceptionComponent,
+  augmentRouter,
+  augmentComponent
+}
