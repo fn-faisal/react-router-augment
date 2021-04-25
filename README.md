@@ -199,8 +199,17 @@ export default augmentComponent({
   middleware: [ execute(() => console.log('middleware about page')) ]
 })(AboutComponent);
 ```
+
+*components/index.ts*
+```ts
+    export * from './home';
+    export * from './about';
+    ...
+```
+
 *main router file eg. App.tsx*
 ```tsx
+import './components';
 import { augmentRouter } from '@react-augment/react-router';
 // import { AugmentComponentType } from '@react-augment/react-router/dist/types';
 
