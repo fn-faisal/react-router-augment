@@ -37,17 +37,13 @@
 // }
 
 import React from 'react';
+import './components';
 import { augmentRouter } from '@react-augment/react-router';
-import { AugmentComponentType } from '@react-augment/react-router/dist/types';
+// import { AugmentComponentType } from '@react-augment/react-router/dist/types';
 
 const WrapperComponent = () => (<></>);
 
-const App = augmentRouter({
-  routes: [
-    { path: '/', component: ({ history }: AugmentComponentType) => (<div>About <span onClick={() => history.push('/')}>asd</span></div>) },
-  ],
-  browserRouterProp: {}
-})(WrapperComponent);
+const App = augmentRouter({})(WrapperComponent);
 
 
 export default App;

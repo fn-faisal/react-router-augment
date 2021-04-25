@@ -1,15 +1,12 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { AugmentComponent } from "../classes/component.class";
-import { AugmentComponentRouteType } from "../types";
-
-type PropsWithChildren<P> = P & { children?: ReactNode };
+import { AugmentComponentRouteType, AugmentComponentType } from "../types";
 
 export function augmentComponent( route: AugmentComponentRouteType ){
   // singleton to register routes.
-  return function<T>(component: React.FC<PropsWithChildren<T>>){
+  return function(component: React.FC<AugmentComponentType>){
     const augCmp = AugmentComponent.instance();
-    // @ts-ignore
-    augCmp.addRoute(route, component.children);
+    augCmp.addRoute(route, component);
     return component;
   }
 }

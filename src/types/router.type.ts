@@ -3,7 +3,7 @@ import { AugmentRouteType } from "./route.type"
 
 export type AugmentRouterType = {
   routes?: Array<AugmentRouteType>,
-  preLoadRoutesComponent: FC<any>,
+  preLoadRoutesComponent?: FC<any>,
   browserRouterProp?: any,
   browserRouterRef?: MutableRefObject<any>,
 }
